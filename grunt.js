@@ -14,15 +14,37 @@ module.exports = function (grunt) {
         " Licensed <%= _.pluck(pkg.licenses, 'type').join('') %> */"
     },
     lint: {
-      files: ["grunt.js", "js/**/*.js", "test/**/*.js"]
+      files: ["grunt.js", "src/js/**/*.js", "test/**/*.js"]
     },
     watch: {
-      files: ["<config:lint.files>", "less/**/*.less"],
-      tasks: "less:development lint"
+      files: ["src/**/*"],
+      tasks: "less:development lint copy concat"
     },
     server: {
       port: 8000,
-      base: "."
+      base: "./target"
+    },
+    concat: {
+      development: {
+        src: ['src/lib/**/*.js', 'src/js/**/*.js'],
+        dest: 'target/js/app.js'
+      }
+    },
+    min: {
+      production: {
+        src: ['src/lib/**/*.js', 'src/js/**/*.js'],
+        dest: 'target/js/app.js'
+      }
+    },
+    copy: {
+      production: {
+        files: {
+          'target/': ["src/*.html",
+                      "src/*.ico",
+                      "src/*.txt",
+                      "src/img/**/*"]
+        }
+      }
     },
     jshint: {
       options: {
@@ -60,7 +82,7 @@ module.exports = function (grunt) {
         options: {
         },
         files: {
-          "css/app.css": "less/app.less"
+          "target/css/app.css": "src/less/app.less"
         }
       },
       production: {
@@ -68,7 +90,7 @@ module.exports = function (grunt) {
           yuicompress: true
         },
         files: {
-          "css/app.css": "less/app.less"
+          "target/css/app.css": "src/less/app.less"
         }
       }
     },
@@ -98,16 +120,14 @@ module.exports = function (grunt) {
   });
 
   grunt.loadNpmTasks("grunt-contrib-less");
+  grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-testacular");
 
   // Default task.
   grunt.registerTask("default",
-    "lint less:production testacularServer:unit");
-  grunt.registerTask("run",
-    "less:development server watch");
-  grunt.registerTask("test",
-    "testacularServer:dev");
-  grunt.registerTask("itest",
-    "testacularServer:integration");
+    "lint less:production copy min testacularServer:unit");
+  grunt.registerTask("run", "copy less:development concat server watch");
+  grunt.registerTask("test", "testacularServer:dev");
+  grunt.registerTask("itest", "testacularServer:integration");
   grunt.registerTask("travis", "lint");
 };
