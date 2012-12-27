@@ -1,0 +1,25 @@
+### Custom
+dist/
+node_modules/
+components/
+css/
+coverage/
+coverage-integration/
+
+### Node.gitignore
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+npm-debug.log
+
+

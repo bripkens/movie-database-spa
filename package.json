@@ -1,0 +1,33 @@
+{
+  "name": "movie-database",
+  "version": "0.0.1",
+  "description": "SPA example",
+  "main": "js/app.js",
+  "scripts": {
+    "test": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bripkens/movie-database-spa.git"
+  },
+  "keywords": [
+    "centerdevice"
+  ],
+  "author": {
+    "name": "Ben Ripkens",
+    "email": "ben.ripkens@codecentric.de",
+    "url": "http://www.codecentric.de"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://raw.github.com/bripkens/movie-database-spa/master/LICENSE-MIT"
+    }
+  ],
+  "devDependencies": {
+    "testacular": "0.4.0",
+    "grunt": "0.3.15",
+    "grunt-contrib-less": "~0.3.1",
+    "grunt-testacular": "0.2.2"
+  }
+}
