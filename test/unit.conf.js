@@ -15,10 +15,10 @@ basePath = "../";
 files = [
   JASMINE,
   JASMINE_ADAPTER,
-  "lib/angular.js",
+  "src/lib/angular.js",
   // "app/lib/angular/angular-*.js",
   // "test/lib/angular/angular-mocks.js",
-  "js/**/*.js",
+  "src/js/**/*.js",
   "test/unit/**/*.js"
 ];
 
@@ -29,5 +29,5 @@ singleRun = true;
 reporters = ['progress', 'coverage'];
 
 preprocessors = {
-  "**/tagbook/js/*.js": "coverage"
+  "**/src/js/*.js": "coverage"
 };

@@ -129,5 +129,6 @@ module.exports = function (grunt) {
   grunt.registerTask("run", "copy less:development concat server watch");
   grunt.registerTask("test", "testacularServer:dev");
   grunt.registerTask("itest", "testacularServer:integration");
-  grunt.registerTask("travis", "lint");
+  grunt.registerTask("travis",
+    "lint less:production copy min testacularServer:unit");
 };
