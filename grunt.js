@@ -26,20 +26,26 @@ module.exports = function (grunt) {
     },
     concat: {
       development: {
-        src: ['src/lib/**/*.js', 'src/js/**/*.js'],
-        dest: 'target/js/app.js'
+        src: ["src/lib/angular.js",
+              "src/lib/angular-resource.js",
+              "src/lib/lodash.js",
+              "src/js/**/*.js"],
+        dest: "target/js/app.js"
       }
     },
     min: {
       production: {
-        src: ['src/lib/**/*.js', 'src/js/**/*.js'],
-        dest: 'target/js/app.js'
+        src: ["src/lib/angular.js",
+              "src/lib/angular-resource.js",
+              "src/lib/lodash.js",
+              "src/js/**/*.js"],
+        dest: "target/js/app.js"
       }
     },
     copy: {
       production: {
         files: {
-          'target/': ["src/*.html",
+          "target/": ["src/*.html",
                       "src/*.ico",
                       "src/*.txt",
                       "src/partials/**/*",

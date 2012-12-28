@@ -1,5 +1,5 @@
 /*global MovieOverviewCtrl:false, MovieDetailCtrl:false*/
-angular.module("movie-database", []).
+angular.module("movieDatabase", ["DataRepository"]).
   config(["$routeProvider", "$locationProvider",
       function($routeProvider, $locationProvider) {
     "use strict";

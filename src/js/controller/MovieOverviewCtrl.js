@@ -1,4 +1,5 @@
-function MovieOverviewCtrl($scope, $location) {
+/*global console:false */
+function MovieOverviewCtrl($scope, $location, MovieRepository) {
   "use strict";
 
   $scope.movies = [
@@ -9,7 +10,13 @@ function MovieOverviewCtrl($scope, $location) {
   $scope.click = function(movieId) {
     $location.path("/movies/" + movieId);
   };
+
+  MovieRepository.query({}, function success() {
+    console.log(arguments);
+  }, function error() {
+    console.log(arguments);
+  });
 }
 
-MovieOverviewCtrl.$inject = ["$scope", "$location"];
+MovieOverviewCtrl.$inject = ["$scope", "$location", "MovieRepository"];
 MovieOverviewCtrl.partial = "overview.html";
