@@ -15,9 +15,7 @@ basePath = "../";
 files = [
   JASMINE,
   JASMINE_ADAPTER,
-  "src/lib/angular.js",
-  "src/lib/angular-resource.js",
-  "src/lib/lodash.js",
+  "src/lib/**/*",
   "src/js/**/*.js",
   "test/unit/**/*.js"
 ];

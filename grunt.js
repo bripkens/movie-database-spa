@@ -18,7 +18,7 @@ module.exports = function (grunt) {
     },
     watch: {
       files: ["src/**/*"],
-      tasks: "less:development lint copy concat"
+      tasks: "less:development lint copy concat reload"
     },
     server: {
       port: 8000,
@@ -26,18 +26,14 @@ module.exports = function (grunt) {
     },
     concat: {
       development: {
-        src: ["src/lib/angular.js",
-              "src/lib/angular-resource.js",
-              "src/lib/lodash.js",
+        src: ["src/lib/**/*",
               "src/js/**/*.js"],
         dest: "target/js/app.js"
       }
     },
     min: {
       production: {
-        src: ["src/lib/angular.js",
-              "src/lib/angular-resource.js",
-              "src/lib/lodash.js",
+        src: ["src/lib/**/*",
               "src/js/**/*.js"],
         dest: "target/js/app.js"
       }
@@ -85,7 +81,7 @@ module.exports = function (grunt) {
       globals: {
         angular: false,
         "_": false,
-        "console": false
+        "jQuery": false
       }
     },
     less: {
@@ -123,7 +119,6 @@ module.exports = function (grunt) {
           keepalive: true
         },
         configFile: "test/unit.conf.js",
-        browsers: ["Chrome"],
         singleRun: false,
         autoWatch: true
       }
@@ -134,9 +129,13 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-testacular");
 
+  var devTools = require("./dev-tools");
   grunt.registerTask("server", "Custom development server", function() {
-    var devServer = require("./dev-server");
-    devServer.start();
+    devTools.startServer();
+  });
+
+  grunt.registerTask("reload", "reload Chrome on OS X", function() {
+    devTools.reloadChrome();
   });
 
   grunt.registerTask("default",

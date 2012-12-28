@@ -1,11 +1,12 @@
-/*global module:false,require:false*/
+/*global module:false,require:false,console:false */
 var nodeStatic = require("node-static");
 var http = require("http");
 var util = require("util");
 var webroot = "./target";
 var port = 8000;
+var exec = require('child_process').exec;
 
-module.exports.start = function() {
+module.exports.startServer = function() {
   "use strict";
 
   var file = new(nodeStatic.Server)(webroot, {
@@ -38,4 +39,11 @@ module.exports.start = function() {
   }
 
   console.log("node-static running at http://localhost:%d", port);
+};
+
+module.exports.reloadChrome = function() {
+  exec("osascript -e 'tell application \"Google Chrome\" " +
+                      "to tell the active tab of its first window' " +
+                 "-e 'reload' " +
+                 "-e 'end tell'");
 };
