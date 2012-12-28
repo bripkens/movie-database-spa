@@ -1,4 +1,4 @@
-/*global module:false*/
+/*global module:false,require:false*/
 module.exports = function (grunt) {
   "use strict";
 
@@ -14,7 +14,7 @@ module.exports = function (grunt) {
         " Licensed <%= _.pluck(pkg.licenses, 'type').join('') %> */"
     },
     lint: {
-      files: ["grunt.js", "src/js/**/*.js", "test/**/*.js"]
+      files: ["grunt.js", "dev-server.js", "src/js/**/*.js", "test/**/*.js"]
     },
     watch: {
       files: ["src/**/*"],
@@ -128,7 +128,11 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-testacular");
 
-  // Default task.
+  grunt.registerTask("server", "Custom development server", function() {
+    var devServer = require("./dev-server");
+    devServer.start();
+  });
+
   grunt.registerTask("default",
     "lint less:production copy min testacularServer:unit");
   grunt.registerTask("run", "copy less:development concat server watch");
