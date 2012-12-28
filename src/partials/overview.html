@@ -14,10 +14,14 @@
         <a href="/movies/{{movie.id}}">{{movie.title}}</a>
       </td>
       <td>
-        <a href="#" title="See comments for this movie" class="icon-comment"></a>
+        <a href="/movies/{{movie.id}}/comments"
+           title="See comments for this movie" class="icon-comment">
+         </a>
       </td>
       <td>
-        <a href="#" title="See tags for this movie" class="icon-tags"></a>
+        <a href="/movies/{{movie.id}}/tags"
+           title="See tags for this movie" class="icon-tags">
+         </a>
       </td>
     </tr>
   </tbody>

@@ -18,7 +18,7 @@ angular.module("movie-database", []).
         controller: ctrl
       });
     });
-    $routeProvider.otherwise({redirectTo: "/movies"});
+    $routeProvider.otherwise({redirectTo: otherwise});
 
     // use the new History API (Angular provides automatic fallback)
     $locationProvider.html5Mode(true);
