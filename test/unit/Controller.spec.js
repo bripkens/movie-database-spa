@@ -1,6 +1,6 @@
 /*global describe:false,it:false,expect:false,AppCtrl:false,beforeEach:false*/
 
-describe("controllers: ", function () {
+describe("Controller: ", function () {
   "use strict";
 
   var validateControllerDefinesPartial = function(name, ctrl) {
@@ -11,7 +11,10 @@ describe("controllers: ", function () {
 
   for (var key in window) {
     if (window.hasOwnProperty(key) && key.indexOf("Ctrl") !== -1) {
-      validateControllerDefinesPartial(key, window[key]);
+      var controller = window[key];
+      if (controller.needsPartial !== false) {
+        validateControllerDefinesPartial(key, controller);
+      }
     }
   }
 

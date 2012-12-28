@@ -1,1 +1,23 @@
-The overview!
+<h2>Movie Overview</h2>
+
+<table class="table table-striped table-hover movie-overview">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="movie in movies">
+      <td>
+        <a href="movies/{{movie.id}}">{{movie.title}}</a>
+      </td>
+      <td>
+        <a href="#" title="See comments for this movie" class="icon-comment"></a>
+      </td>
+      <td>
+        <a href="#" title="See tags for this movie" class="icon-tags"></a>
+      </td>
+    </tr>
+  </tbody>
+</table>

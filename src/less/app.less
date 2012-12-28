@@ -1,5 +1,30 @@
 @import "lib/bootstrap/bootstrap.less";
 
 body {
-  margin-top: 80px;
+  margin-top: 50px;
+}
+
+.sidebar {
+  margin: 0;
+
+  h2 {
+    font-size: 25px;
+    margin-top: 0
+  }
+
+  ul {
+    list-style-type: none;
+    margin-left: 0;
+
+    li {
+      display: inline-block;
+      padding: 0 0.3em;
+    }
+  }
+}
+
+table.movie-overview td {
+  &:nth-child(2), &:last-child {
+    width: 20px;
+  }
 }

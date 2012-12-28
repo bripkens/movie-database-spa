@@ -78,7 +78,8 @@ module.exports = function (grunt) {
       },
       globals: {
         angular: false,
-        "_": false
+        "_": false,
+        "console": false
       }
     },
     less: {

@@ -1,4 +1,4 @@
-/*global AppCtrl:false*/
+/*global MovieOverviewCtrl:false, MovieDetailCtrl:false*/
 angular.module("movie-database", []).
   config(["$routeProvider", "$locationProvider",
       function($routeProvider, $locationProvider) {
@@ -6,24 +6,22 @@ angular.module("movie-database", []).
 
     // Route Configurations
     var routes = {
-      "/movies": AppCtrl
+      "/movies": MovieOverviewCtrl,
+      "/movies/:movieId": MovieDetailCtrl
     };
     var otherwise = "/movies";
 
     // Registering the previously defined routes with Angular JS
     _.each(routes, function(ctrl, route) {
       $routeProvider.when(route, {
-        templateUrl: "partials/" + ctrl.partial,
+        templateUrl: "/partials/" + ctrl.partial,
         controller: ctrl
       });
     });
     $routeProvider.otherwise({redirectTo: "/movies"});
 
-    // Only activate HTML 5 when the application is actually deployed as our
-    // development server does not support URL rewriting
-    if (window.location.href.indexOf("http://localhost") !== 0) {
-      $locationProvider.html5Mode(true);
-    }
+    // use the new History API (Angular provides automatic fallback)
+    $locationProvider.html5Mode(true);
 
     // We explicitly have to set the HashPrefix to comply with Google's
     // crawlable hash prefix.
