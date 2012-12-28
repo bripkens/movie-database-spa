@@ -42,6 +42,7 @@ module.exports = function (grunt) {
           'target/': ["src/*.html",
                       "src/*.ico",
                       "src/*.txt",
+                      "src/partials/**/*",
                       "src/img/**/*"]
         }
       }
@@ -75,7 +76,10 @@ module.exports = function (grunt) {
         maxcomplexity: 4,
         maxlen: 80
       },
-      globals: {}
+      globals: {
+        angular: false,
+        "_": false
+      }
     },
     less: {
       development: {
