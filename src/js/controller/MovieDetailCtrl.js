@@ -1,8 +1,13 @@
-function MovieDetailCtrl($scope, $routeParams) {
+define(["app"], function(app) {
   "use strict";
 
-  $scope.movieId = $routeParams.movieId;
-}
+  function constructor($scope, $routeParams) {
+    $scope.movieId = $routeParams.movieId;
+  }
 
-MovieDetailCtrl.$inject = ["$scope", "$routeParams"];
-MovieDetailCtrl.partial = "detail.html";
+  var controller = app.controller("MovieDetailCtrl",
+    ["$scope", "$routeParams", constructor]);
+
+  constructor.partial = "detail.html";
+  return constructor;
+});

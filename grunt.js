@@ -17,8 +17,8 @@ module.exports = function (grunt) {
       files: ["grunt.js", "dev-server.js", "src/js/**/*.js", "test/**/*.js"]
     },
     watch: {
-      files: ["src/**/*"],
-      tasks: "less:development lint copy concat reload"
+      files: ["src/**/*", "test/**/*"],
+      tasks: "lint compile:development"
     },
     server: {
       port: 8000,
@@ -26,16 +26,36 @@ module.exports = function (grunt) {
     },
     concat: {
       development: {
-        src: ["src/lib/**/*",
-              "src/js/**/*.js"],
+        src: ["src/lib/require.js",
+              "target/js/app-without-require.js"],
         dest: "target/js/app.js"
       }
     },
     min: {
       production: {
-        src: ["src/lib/**/*",
-              "src/js/**/*.js"],
+        src: ["src/lib/require.js",
+              "target/js/app-without-require.js"],
         dest: "target/js/app.js"
+      }
+    },
+    requirejs: {
+      compile: {
+        options: {
+          name: "main",
+          baseUrl: "src/js",
+          optimize: "none",
+          out: "target/js/app-without-require.js",
+          shim: {
+            angular: {
+              exports: 'angular'
+            }
+          },
+          paths: {
+            jquery: "../lib/jquery",
+            angular: "../lib/angular",
+            lodash: "../lib/lodash"
+          }
+        }
       }
     },
     copy: {
@@ -77,11 +97,9 @@ module.exports = function (grunt) {
         maxstatements: 10,
         maxcomplexity: 4,
         maxlen: 80
-      },
-      globals: {
-        angular: false,
-        "_": false,
-        "jQuery": false
+      }, globals: {
+        require: false,
+        define: false
       }
     },
     less: {
@@ -127,6 +145,7 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks("grunt-contrib-less");
   grunt.loadNpmTasks("grunt-contrib-copy");
+  grunt.loadNpmTasks("grunt-contrib-requirejs");
   grunt.loadNpmTasks("grunt-testacular");
 
   var devTools = require("./dev-tools");
@@ -138,11 +157,15 @@ module.exports = function (grunt) {
     devTools.reloadChrome();
   });
 
-  grunt.registerTask("default",
-    "lint less:production copy min testacularServer:unit");
-  grunt.registerTask("run", "copy less:development concat server watch");
+  grunt.registerTask("compile:production",
+    "less:production copy requirejs min");
+  grunt.registerTask("compile:development",
+    "less:development copy requirejs concat");
+
+  grunt.registerTask("default", "lint compile:production");
+  grunt.registerTask("run", "compile:development server watch");
+
   grunt.registerTask("test", "testacularServer:dev");
   grunt.registerTask("itest", "testacularServer:integration");
-  grunt.registerTask("travis",
-    "lint less:production copy min testacularServer:unit");
+  grunt.registerTask("travis", "lint compile:production testacularServer:unit");
 };

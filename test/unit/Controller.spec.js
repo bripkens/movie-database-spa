@@ -1,21 +1,30 @@
-/*global describe:false,it:false,expect:false,AppCtrl:false,beforeEach:false*/
+/*global describe:false,it:false,expect:false,runs:false,waitsFor:false*/
+
+
 
 describe("Controller: ", function () {
   "use strict";
 
-  var validateControllerDefinesPartial = function(name, ctrl) {
-    it(name + " should define a partial", function() {
-      expect(ctrl.partial).toBeTruthy();
-    });
-  };
+  var done = false;
 
-  for (var key in window) {
-    if (window.hasOwnProperty(key) && key.indexOf("Ctrl") !== -1) {
-      var controller = window[key];
-      if (controller.needsPartial !== false) {
-        validateControllerDefinesPartial(key, controller);
-      }
-    }
-  }
+  it("should define a partial", function() {
+    runs(function() {
+      require(["controller/all"], function(all) {
+        expect(all.length).toBeGreaterThan(0);
+        for (var i = 0; i < all.length; i++) {
+          var controller = all[i];
+          if (controller.needsPartial !== false) {
+            expect(controller.partial).toBeTruthy();
+          }
+        }
+        done = true;
+      });
+    });
+  });
+
+
+  waitsFor(function() {
+    return done;
+  });
 
 });

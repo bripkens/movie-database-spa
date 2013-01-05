@@ -4,7 +4,7 @@ var http = require("http");
 var util = require("util");
 var webroot = "./target";
 var port = 8000;
-var exec = require('child_process').exec;
+var exec = require("child_process").exec;
 
 module.exports.startServer = function() {
   "use strict";

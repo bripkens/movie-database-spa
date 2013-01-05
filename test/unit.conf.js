@@ -15,8 +15,7 @@ basePath = "../";
 files = [
   JASMINE,
   JASMINE_ADAPTER,
-  "src/lib/**/*",
-  "src/js/**/*.js",
+  "target/js/app.js",
   "test/unit/**/*.js"
 ];
 
@@ -24,8 +23,8 @@ browsers = ["PhantomJS"];
 autoWatch = false;
 singleRun = true;
 
-reporters = ['progress', 'coverage'];
+reporters = ['progress'];
 
-preprocessors = {
-  "**/src/js/*.js": "coverage"
-};
+// preprocessors = {
+//   "**/src/js/*.js": "coverage"
+// };

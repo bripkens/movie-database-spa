@@ -1,10 +1,14 @@
 /*global console:false */
-angular.module("DataRepository", []).
-    factory("MovieRepository", function() {
+define(["app", "jquery"], function(app, $) {
   "use strict";
 
-  return { query: function() {
-    console.log("Getting data!", arguments);
-  }};
+  app.factory("MovieService", ["config", function(config) {
+    var exports = {};
 
+    exports.all = function(callback) {
+      console.log('config: ', config);
+    };
+
+    return exports;
+  }]);
 });
