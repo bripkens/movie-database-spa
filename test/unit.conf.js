@@ -16,6 +16,7 @@ files = [
   JASMINE,
   JASMINE_ADAPTER,
   "target/js/app.js",
+  "test/helper.js",
   "test/unit/**/*.js"
 ];
 
