@@ -6,7 +6,37 @@ define(["app", "jquery"], function(app, $) {
     var exports = {};
 
     exports.all = function(callback) {
-      console.log('config: ', config);
+      $.ajax({
+        type: "GET",
+        url: config.endpoint + "/movies",
+        dataType: "json",
+        headers: {
+          Accept: "application/json, application/hal+json"
+        },
+        success: function(data) {
+          callback(null, data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          callback(textStatus);
+        }
+      });
+    };
+
+    exports.get = function(id, callback) {
+      $.ajax({
+        type: "GET",
+        url: config.endpoint + "/movies/" + id,
+        dataType: "json",
+        headers: {
+          Accept: "application/json, application/hal+json"
+        },
+        success: function(data) {
+          callback(null, data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          callback(textStatus);
+        }
+      });
     };
 
     return exports;

@@ -24,8 +24,8 @@ browsers = ["PhantomJS"];
 autoWatch = false;
 singleRun = true;
 
-reporters = ['progress'];
+reporters = ["progress", "coverage"];
 
-// preprocessors = {
-//   "**/src/js/*.js": "coverage"
-// };
+preprocessors = {
+  "**/target/js/app.js": "coverage"
+};

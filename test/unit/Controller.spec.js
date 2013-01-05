@@ -1,4 +1,4 @@
-/*global describe:false,expect:false*/
+/*global describe:false,expect:false,rIt:false*/
 
 describe("Controller: ", function () {
   "use strict";

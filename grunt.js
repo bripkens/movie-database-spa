@@ -18,7 +18,7 @@ module.exports = function (grunt) {
     },
     watch: {
       files: ["src/**/*", "test/**/*"],
-      tasks: "lint compile:development"
+      tasks: "lint compile:development reload"
     },
     server: {
       port: 8000,

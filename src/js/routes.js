@@ -1,8 +1,7 @@
 define(["app",
         "lodash",
         "controller/MovieDetailCtrl",
-        "controller/MovieOverviewCtrl",
-        "controller/all"],
+        "controller/MovieOverviewCtrl"],
         function(app, _, MovieDetailCtrl, MovieOverviewCtrl) {
   "use strict";
 

@@ -1,3 +1,4 @@
+/*global it:false,runs:false,waitsFor:false*/
 function rIt(name, dependencies, test) {
   "use strict";
 
