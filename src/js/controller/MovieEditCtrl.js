@@ -2,12 +2,12 @@ define(["angularUtils"], function(angularUtils) {
   "use strict";
 
   function constructor($scope, $routeParams, $location, MovieService) {
-    $scope.movieId = $routeParams.movieId;
+    $scope.id = $routeParams.movieId;
     $scope.title = "";
     $scope.releaseDate = "";
     $scope.description = "";
 
-    MovieService.get($scope.movieId, function(error, data) {
+    MovieService.get($scope.id, function(error, data) {
       $scope.title = data.title;
       $scope.description = data.description;
 
@@ -18,7 +18,7 @@ define(["angularUtils"], function(angularUtils) {
 
     $scope.save = function() {
       var data = {
-        id: $scope.movieId,
+        id: $scope.id,
         title: $scope.title,
         description: $scope.description,
         startDate: $scope.releaseDate
@@ -26,7 +26,7 @@ define(["angularUtils"], function(angularUtils) {
 
       MovieService.update(data, function(error, data) {
         if (!error) {
-          $location.path("/movies/" + $scope.movieId);
+          $location.path("/movies/" + $scope.id);
         }
       });
     };
