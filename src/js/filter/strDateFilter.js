@@ -1,7 +1,6 @@
 require(["app", "moment"], function(app, moment) {
   "use strict";
 
-// THH:mm:ss.SSSZ
   var serviceDateFormat = "YYYY-MM-DD";
 
   app.filter("strDateFormat", function() {

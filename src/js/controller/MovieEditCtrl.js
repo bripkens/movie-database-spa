@@ -1,4 +1,3 @@
-/*global console:false */
 define(["app"], function(app) {
   "use strict";
 
