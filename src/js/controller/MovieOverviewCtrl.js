@@ -18,6 +18,6 @@ define(["app"], function(app) {
   var controller = app.controller("MovieOverviewCtrl",
     ["$scope", "$location", "MovieService", constructor]);
 
-  constructor.partial = "overview.html";
+  constructor.partial = "movies/overview.html";
   return constructor;
 });

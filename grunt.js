@@ -53,7 +53,8 @@ module.exports = function (grunt) {
           paths: {
             jquery: "../lib/jquery",
             angular: "../lib/angular",
-            lodash: "../lib/lodash"
+            lodash: "../lib/lodash",
+            moment: "../lib/moment"
           }
         }
       }

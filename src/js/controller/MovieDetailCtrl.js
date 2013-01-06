@@ -14,6 +14,6 @@ define(["app"], function(app) {
   var controller = app.controller("MovieDetailCtrl",
     ["$scope", "$routeParams", "MovieService", constructor]);
 
-  constructor.partial = "detail.html";
+  constructor.partial = "movies/detail.html";
   return constructor;
 });
