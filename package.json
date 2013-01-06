@@ -11,7 +11,10 @@
     "url": "git@github.com:bripkens/movie-database-spa.git"
   },
   "keywords": [
-    "centerdevice"
+    "angular",
+    "spa",
+    "demo application",
+    "showcase"
   ],
   "author": {
     "name": "Ben Ripkens",
@@ -31,7 +34,8 @@
     "grunt-testacular": "0.2.2",
     "grunt-contrib-copy": "0.3.2",
     "node-static": "0.6.6",
-    "requirejs": "~2.1.2",
-    "grunt-contrib-requirejs": "~0.3.4"
+    "requirejs": "2.1.2",
+    "grunt-contrib-requirejs": "0.3.4",
+    "findit": "~0.1.2"
   }
 }

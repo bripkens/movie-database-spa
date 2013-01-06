@@ -1,19 +1,18 @@
-define(["app"], function(app) {
+define(["angularUtils"], function(angularUtils) {
   "use strict";
 
   function constructor($scope, $routeParams, MovieService) {
     $scope.movieId = $routeParams.movieId;
 
     MovieService.get($scope.movieId, function(error, data) {
-      $scope.$apply(function() {
-        $scope.movie = data;
-      });
+      $scope.movie = data;
     });
   }
 
-  var controller = app.controller("MovieDetailCtrl",
-    ["$scope", "$routeParams", "MovieService", constructor]);
-
-  constructor.partial = "movies/detail.html";
-  return constructor;
+  return angularUtils.defineController({
+    name: "MovieDetailCtrl",
+    constructor: constructor,
+    partial: "movies/detail.html",
+    dependencies: ["$scope", "$routeParams", "MovieService"]
+  });
 });

@@ -158,10 +158,14 @@ module.exports = function (grunt) {
     devTools.reloadChrome();
   });
 
+  grunt.registerTask("combineTemplates", "Combine the partials", function() {
+    devTools.combineTemplates(grunt.log.writeln.bind(grunt.log), this.async());
+  });
+
   grunt.registerTask("compile:production",
-    "less:production copy requirejs min");
+    "less:production copy requirejs min combineTemplates");
   grunt.registerTask("compile:development",
-    "less:development copy requirejs concat");
+    "less:development copy requirejs concat combineTemplates");
 
   grunt.registerTask("default", "lint compile:production");
   grunt.registerTask("run", "compile:development server watch");

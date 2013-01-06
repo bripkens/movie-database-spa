@@ -1,38 +1,41 @@
-define(["app"], function(app) {
+define(["angularUtils"], function(angularUtils) {
   "use strict";
 
-  function constructor($scope, $routeParams, MovieService) {
+  function constructor($scope, $routeParams, $location, MovieService) {
     $scope.movieId = $routeParams.movieId;
     $scope.title = "";
     $scope.releaseDate = "";
     $scope.description = "";
 
-    var readServerResponse = function(error, data) {
-      $scope.$apply(function() {
-        $scope.title = data.title;
-        $scope.description = data.description;
+    MovieService.get($scope.movieId, function(error, data) {
+      $scope.title = data.title;
+      $scope.description = data.description;
 
-        if (data.startDate) {
-          $scope.releaseDate = data.startDate.substring(0, 10);
-        }
-      });
-    };
-
-    MovieService.get($scope.movieId, readServerResponse);
+      if (data.startDate) {
+        $scope.releaseDate = data.startDate.substring(0, 10);
+      }
+    });
 
     $scope.save = function() {
       var data = {
         id: $scope.movieId,
         title: $scope.title,
-        description: $scope.description
+        description: $scope.description,
+        startDate: $scope.releaseDate
       };
-      MovieService.update(data, readServerResponse);
+
+      MovieService.update(data, function(error, data) {
+        if (!error) {
+          $location.path("/movies/" + $scope.movieId);
+        }
+      });
     };
   }
 
-  var controller = app.controller("MovieEditCtrl",
-    ["$scope", "$routeParams", "MovieService", constructor]);
-
-  constructor.partial = "movies/edit.html";
-  return constructor;
+  return angularUtils.defineController({
+    name: "MovieEditCtrl",
+    constructor: constructor,
+    partial: "movies/edit.html",
+    dependencies: ["$scope", "$routeParams", "$location", "MovieService"]
+  });
 });

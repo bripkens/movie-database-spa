@@ -2,6 +2,8 @@
 var nodeStatic = require("node-static");
 var http = require("http");
 var util = require("util");
+var findit = require("findit");
+var fs = require("fs");
 var webroot = "./target";
 var port = 8000;
 var exec = require("child_process").exec;
@@ -46,4 +48,60 @@ module.exports.reloadChrome = function() {
                       "to tell the active tab of its first window' " +
                  "-e 'reload' " +
                  "-e 'end tell'");
+};
+
+module.exports.combineTemplates = function(log, doneCallback) {
+  var templates = {};
+  var templateCount = 0;
+  var templateReadCount = 0;
+  var targetFile = "target/index.html";
+
+  var combineAndWrite = function() {
+    var combination = "";
+    for (name in templates) {
+      if (templates.hasOwnProperty(name)) {
+        combination += "<script type='text/ng-template' id='" + name + "'>";
+        combination += templates[name];
+        combination += "</script>";
+      }
+    }
+
+    log("Writing combined templates to " + targetFile);
+    fs.readFile(targetFile, "utf8", function(err, contents) {
+      if (err) {
+        log("Failed to read target file contents: " + err);
+        return doneCallback(false);
+      }
+
+      var newContents = contents.replace("</body>", combination + "</body>");
+      fs.writeFile(targetFile, newContents, "utf8", function(err) {
+        if (err) {
+          log("Failed to write combined templates: " + err);
+
+        }
+        doneCallback(true);
+      });
+    });
+  };
+
+  findit.find("src/partials").on("file", function(filename) {
+    templateCount++;
+    var filenameWithoutPrefix = filename.substring(3);
+
+    log("Including partial: " + filenameWithoutPrefix);
+
+    fs.readFile(filename, "utf8", function(err, contents) {
+      if (err) {
+        log("Failed to read contents of " + filename + " due to " + err);
+        doneCallback(false);
+      }
+
+      templates[filenameWithoutPrefix] = contents;
+
+      templateReadCount++;
+      if (templateReadCount === templateCount) {
+        combineAndWrite();
+      }
+    });
+  });
 };

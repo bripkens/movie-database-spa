@@ -1,4 +1,4 @@
-define(["app"], function(app) {
+define(["angularUtils"], function(angularUtils) {
   "use strict";
 
   function constructor($scope, $location, MovieService) {
@@ -9,15 +9,14 @@ define(["app"], function(app) {
     };
 
     MovieService.all(function(error, movies) {
-      $scope.$apply(function() {
-        $scope.movies = movies;
-      });
+      $scope.movies = movies;
     });
   }
 
-  var controller = app.controller("MovieOverviewCtrl",
-    ["$scope", "$location", "MovieService", constructor]);
-
-  constructor.partial = "movies/overview.html";
-  return constructor;
+  return angularUtils.defineController({
+    name: "MovieOverviewCtrl",
+    constructor: constructor,
+    partial: "movies/overview.html",
+    dependencies: ["$scope", "$location", "MovieService"]
+  });
 });

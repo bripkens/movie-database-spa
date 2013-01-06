@@ -1,4 +1,4 @@
-define(["app"], function(app) {
+define(["angularUtils"], function(angularUtils) {
   "use strict";
 
   function constructor($scope) {
@@ -10,8 +10,9 @@ define(["app"], function(app) {
     };
   }
 
-  var controller = app.controller("TagCtrl", ["$scope", constructor]);
-
-  constructor.needsPartial = false;
-  return constructor;
+  return angularUtils.defineController({
+    name: "TagCtrl",
+    constructor: constructor,
+    dependencies: ["$scope"]
+  });
 });
