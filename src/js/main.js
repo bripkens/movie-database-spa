@@ -1,6 +1,6 @@
 require(["angular",
          "app",
-         "configuration",
+         "config",
          "service/all",
          "filter/all",
          "directive/all",

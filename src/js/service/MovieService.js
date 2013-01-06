@@ -1,8 +1,8 @@
 /*global console:false */
-define(["app"], function(app) {
+define(["app", "config"], function(app, config) {
   "use strict";
 
-  app.factory("MovieService", ["config", "$http", function(config, $http) {
+  app.factory("MovieService", ["$http", function($http) {
     var exports = {};
 
     exports.all = function(callback) {
