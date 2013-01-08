@@ -2,8 +2,14 @@ define(["app",
         "lodash",
         "controller/MovieDetailCtrl",
         "controller/MovieOverviewCtrl",
-        "controller/MovieEditCtrl"],
-        function(app, _, MovieDetailCtrl, MovieOverviewCtrl, MovieEditCtrl) {
+        "controller/MovieEditCtrl",
+        "controller/CommentOverviewCtrl"],
+        function(app,
+          _,
+          MovieDetailCtrl,
+          MovieOverviewCtrl,
+          MovieEditCtrl,
+          CommentOverviewCtrl) {
   "use strict";
 
   app.config(["$routeProvider", "$locationProvider",
@@ -13,7 +19,8 @@ define(["app",
     var routes = {
       "/movies": MovieOverviewCtrl,
       "/movies/:movieId": MovieDetailCtrl,
-      "/movies/:movieId/edit": MovieEditCtrl
+      "/movies/:movieId/edit": MovieEditCtrl,
+      "/movies/:movieId/comments": CommentOverviewCtrl
     };
     var otherwise = "/movies";
 

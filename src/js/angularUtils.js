@@ -9,6 +9,9 @@ define(["app", "utils"], function(app, utils) {
     utils.assert(config.dependencies,
       "Controller % defines no dependencies!",
       config.name);
+    utils.assertFunction(config.constructor,
+      "Controller % defines no controller function. Got: %",
+      config.name, config.constructor);
 
     var constructor = config.constructor;
     app.controller(config.name, constructor);

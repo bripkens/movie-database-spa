@@ -51,17 +51,17 @@ module.exports.reloadChrome = function() {
 };
 
 module.exports.combineTemplates = function(log, doneCallback) {
-  var templates = {};
-  var templateCount = 0;
+  var templates = [];
+  var templateContents = {};
   var templateReadCount = 0;
   var targetFile = "target/index.html";
 
   var combineAndWrite = function() {
     var combination = "";
-    for (name in templates) {
-      if (templates.hasOwnProperty(name)) {
+    for (name in templateContents) {
+      if (templateContents.hasOwnProperty(name)) {
         combination += "<script type='text/ng-template' id='" + name + "'>";
-        combination += templates[name];
+        combination += templateContents[name];
         combination += "</script>";
       }
     }
@@ -85,23 +85,24 @@ module.exports.combineTemplates = function(log, doneCallback) {
   };
 
   findit.find("src/partials").on("file", function(filename) {
-    templateCount++;
-    var filenameWithoutPrefix = filename.substring(3);
+    templates.push(filename);
+  }).on("end", function() {
+    templates.forEach(function(filename) {
+      var filenameWithoutPrefix = filename.substring(3);
+      log("Including partial: " + filenameWithoutPrefix);
+      fs.readFile(filename, "utf8", function(err, contents) {
+        if (err) {
+          log("Failed to read contents of " + filename + " due to " + err);
+          doneCallback(false);
+        }
 
-    log("Including partial: " + filenameWithoutPrefix);
+        templateContents[filenameWithoutPrefix] = contents;
 
-    fs.readFile(filename, "utf8", function(err, contents) {
-      if (err) {
-        log("Failed to read contents of " + filename + " due to " + err);
-        doneCallback(false);
-      }
-
-      templates[filenameWithoutPrefix] = contents;
-
-      templateReadCount++;
-      if (templateReadCount === templateCount) {
-        combineAndWrite();
-      }
+        templateReadCount++;
+        if (templateReadCount === templates.length) {
+          combineAndWrite();
+        }
+      });
     });
   });
 };

@@ -1,0 +1,13 @@
+<h2>Comments for: {{movie.title}}</h2>
+
+<div class="comments-overview">
+  <div ng-repeat="comment in comments">
+    <div class="creationDate">
+      Posted on
+      <time>{{comment.creationDate | strDateFormat}}</time>
+    </div>
+    <div class="content">
+      {{comment.content}}
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-define(["angularUtils"], function(angularUtils) {
+define(["angularUtils", "eventbus"], function(angularUtils, eventbus) {
   "use strict";
 
   function constructor($scope) {

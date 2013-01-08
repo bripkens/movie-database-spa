@@ -23,7 +23,7 @@ describe("tagbook App", function() {
 
 
     it("should add new bookmarks", function() {
-      expect(repeater("ul li").count()).toBe(0);
+      expect(repeater("ul li").count()).toBeGreaterThan(0);
 
       input("url").enter("http://blog.bripkens.de");
       input("description").enter("Ben's Blog");

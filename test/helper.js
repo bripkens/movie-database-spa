@@ -1,5 +1,7 @@
 /*global it:false,runs:false,waitsFor:false*/
-function rIt(name, dependencies, test) {
+
+
+this.rIt = function rIt(name, dependencies, test) {
   "use strict";
 
   it(name, function() {
@@ -17,4 +19,4 @@ function rIt(name, dependencies, test) {
       return done;
     });
   });
-}
+};
