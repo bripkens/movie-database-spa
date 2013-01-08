@@ -1,44 +1,25 @@
-define(["app",
-        "lodash",
+define(["controller/404Ctrl",
         "controller/MovieDetailCtrl",
         "controller/MovieOverviewCtrl",
         "controller/MovieEditCtrl",
         "controller/CommentOverviewCtrl"],
-        function(app,
-          _,
+        function(
+          _404Ctrl,
           MovieDetailCtrl,
           MovieOverviewCtrl,
           MovieEditCtrl,
           CommentOverviewCtrl) {
   "use strict";
 
-  app.config(["$routeProvider", "$locationProvider",
-      function($routeProvider, $locationProvider) {
-
-    // Route Configurations
-    var routes = {
+  return {
+    paths: {
+      "/": "/movies",
+      "/404": _404Ctrl,
       "/movies": MovieOverviewCtrl,
       "/movies/:movieId": MovieDetailCtrl,
       "/movies/:movieId/edit": MovieEditCtrl,
       "/movies/:movieId/comments": CommentOverviewCtrl
-    };
-    var otherwise = "/movies";
-
-    // Registering the previously defined routes with Angular JS
-    _.each(routes, function(ctrl, route) {
-      $routeProvider.when(route, {
-        templateUrl: "/partials/" + ctrl.partial,
-        controller: ctrl
-      });
-    });
-    $routeProvider.otherwise({redirectTo: otherwise});
-
-    // use the new History API (Angular provides automatic fallback)
-    $locationProvider.html5Mode(true);
-
-    // We explicitly have to set the HashPrefix to comply with Google's
-    // crawlable hash prefix.
-    $locationProvider.hashPrefix("!");
-  }]);
+    }, otherwise: "/404"
+  };
 
 });

@@ -4,7 +4,7 @@ require(["angular",
          "filter/all",
          "directive/all",
          "controller/all",
-         "routes"], function (angular) {
+         "setup"], function (angular) {
   "use strict";
   angular.bootstrap(document, ["movieDatabase"]);
 });

@@ -73,7 +73,7 @@ module.exports.combineTemplates = function(log, doneCallback) {
         return doneCallback(false);
       }
 
-      var newContents = contents.replace("</body>", combination + "</body>");
+      var newContents = contents.replace("</head>", combination + "</head>");
       fs.writeFile(targetFile, newContents, "utf8", function(err) {
         if (err) {
           log("Failed to write combined templates: " + err);

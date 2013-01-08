@@ -1,35 +1,34 @@
 define(["angularUtils"], function(angularUtils) {
   "use strict";
 
-  function constructor($scope, $routeParams, MovieService) {
-    $scope.movieId = $routeParams.movieId;
+  function constructor($scope, movieResponse, MovieService) {
+    $scope.predicate = "creationDate";
+    $scope.reverse = true;
+    $scope.newCommmentContent = "";
+    $scope.movie = movieResponse.data;
 
-    $scope.comments = [
-      {
-        creationDate: "2012-12-12",
-        content: "This is a comment"
-      }, {
-        creationDate: "2013-01-07",
-        content: "The site is improving!"
-      }, {
-        creationDate: "2013-01-08",
-        content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. " +
-                 "In animi sunt aspernatur ullam provident culpa velit " +
-                 "soluta perferendis consequuntur fugit delectus praesentium " +
-                 "quae laboriosam assumenda quam tenetur obcaecati " +
-                 "consectetur consequatur!"
-      }
-    ];
-
-    MovieService.get($scope.movieId, function(error, data) {
-      $scope.movie = data;
-    });
+    $scope.addComment = function() {
+      MovieService.addComment($scope.movie.id,
+          $scope.newCommmentContent,
+          function(error, data) {
+        $scope.newCommmentContent = "";
+        $scope.movie = data;
+      });
+    };
   }
+
+  constructor.title = "fooobar";
+  constructor.resolve = {};
+  constructor.resolve.movieResponse = function($route, MovieService) {
+    var movieId = $route.current.params.movieId;
+    return MovieService.get(movieId);
+  };
+  constructor.resolve.movieResponse.$inject = ["$route", "MovieService"];
 
   return angularUtils.defineController({
     name: "CommentOverviewCtrl",
     constructor: constructor,
     partial: "comments/overview.html",
-    dependencies: ["$scope", "$routeParams", "MovieService"]
+    dependencies: ["$scope", "movieResponse", "MovieService"]
   });
 });

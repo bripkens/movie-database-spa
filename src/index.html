@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="/css/app.css">
   <script src="/js/app.js"></script>
 </head>
-<body>
+<body ng-controller="ApplicationCtrl">
 
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
@@ -33,9 +33,9 @@
 
   <div class="container">
     <div class="row">
+
       <div class="span3 well well-small sidebar" ng-controller="TagCtrl">
         <h2>Tag Cloud</h2>
-
         <ul>
           <li ng-repeat="tag in tags">
             <a href="#" title="Check out the movies tagged with A"
@@ -45,7 +45,14 @@
           </li>
         </ul>
       </div>
-      <div class="span9" ng-view></div>
+
+      <div class="span9">
+        <notification title="'Successfully saved!'" type="'error'">
+          Your comment was added, nice!
+        </notification>
+        <div ng-view></div>
+      </div>
+
     </div>
   </div>
 

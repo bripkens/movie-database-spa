@@ -3,9 +3,15 @@ define(["lodash"], function(_) {
 
   var eventPrefix = "event";
 
+  var id = _.uniqueId.bind(_, eventPrefix);
+
   return {
+    // fn(newTitle)
+    pageTitle: id(),
+
     tags: {
-      "update": _.uniqueId(eventPrefix)
+      // fn()
+      update: id()
     }
   };
 });

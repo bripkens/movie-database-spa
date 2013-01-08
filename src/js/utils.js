@@ -3,13 +3,16 @@ define(["config"], function(config) {
 
   var exports = {};
 
-  var formatStringRegex = /\\{0}%/;
-  var replaceEscapeCharacterRegex = /\\%/;
+  var formatStringRegex = /((\\)?%)/g;
+  var replaceEscapeCharacterRegex = /\\%/g;
 
   exports.format = function(message) {
     var result = message;
     for (var i = 1; i < arguments.length; i++) {
-      result = result.replace(formatStringRegex, arguments[i]);
+      // result = result.replace(formatStringRegex, function($0, $1, $2) {
+      //   return $2 ? $2 : arguments[i];
+      // });
+      result = result.replace("%", arguments[i]);
     }
     return result.replace(replaceEscapeCharacterRegex, "%");
   };

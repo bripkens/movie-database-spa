@@ -19,10 +19,11 @@ define(["angular"], function (angular) {
    *
    * This project therefore splits the definition of the angular root module,
    * its configuration and the definition of the controllers.
+   *
    *    app.js    <---     *Ctrl.js
    *
-   *      /\
-   *      |
+   *      ╱╲
+   *      ││
    *
    *   routes.js
    */

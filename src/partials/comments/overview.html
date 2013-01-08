@@ -1,13 +1,32 @@
 <h2>Comments for: {{movie.title}}</h2>
 
 <div class="comments-overview">
-  <div ng-repeat="comment in comments">
+  <div ng-repeat="comment in movie.comments | orderBy:predicate:reverse">
     <div class="creationDate">
       Posted on
-      <time>{{comment.creationDate | strDateFormat}}</time>
+      <time>{{comment.creationDate | strDateTimeFormat}}</time>
     </div>
     <div class="content">
       {{comment.content}}
     </div>
   </div>
+
+  <form ng-submit="addComment()">
+    <fieldset>
+      <legend>New Comment</legend>
+
+      <textarea class="input-block-level"
+                ng-model="newCommmentContent"
+                autofocus>
+      </textarea>
+
+      <div class="form-actions">
+        <button type="submit"
+                class="btn btn-primary"
+                ng-click="save()">
+          Add Comment
+        </button>
+      </div>
+    </fieldset>
+  </form>
 </div>
