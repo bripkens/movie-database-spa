@@ -15,8 +15,8 @@ describe("Controller: ", function () {
   });
 
   rIt("parameters should match $inject",
-      ["controller/all"],
-      function(all) {
+      ["controller/all", "utils", "config"],
+      function(all, utils, config) {
 
     var extractParametersRegex = /function.*?\((.*?)\)/i;
     all.forEach(function(controller) {
@@ -41,6 +41,13 @@ describe("Controller: ", function () {
         });
 
         // validate each parameter's name
+        config.unitTestModus = true;
+        if (utils.isSourceMinified()) {
+          // it makes no sense to test a function's toString()
+          // against minified code.
+          return;
+        }
+
         parameters.forEach(function(parameter, i) {
           expect(parameter).to(function(actual) {
             var expected = controller.$inject[i];

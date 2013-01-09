@@ -59,13 +59,21 @@ define(["config"], function(config) {
 
     return function() {
       if (config.unitTestModus === true) {
-        fn.apply(this, arguments);
+        return fn.apply(this, arguments);
       } else {
         exports.assert(false, "This function can only be called in " +
           "unitTestingMode.");
       }
     };
   };
+
+  exports.isSourceMinified = exports.onlyAllowInUnitTest(function() {
+    var miniTest = function(longParameterName) {
+      return longParameterName;
+    };
+
+    return miniTest.toString().indexOf("longParameterName") === -1;
+  });
 
   return exports;
 });
