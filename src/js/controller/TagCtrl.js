@@ -1,7 +1,7 @@
 define(["angularUtils", "eventbus"], function(angularUtils, eventbus) {
   "use strict";
 
-  function constructor($scope) {
+  function controller($scope) {
     $scope.tags = ["Science Fiction", "Thriller", "Action"];
 
     $scope.click = function(tag) {
@@ -12,7 +12,7 @@ define(["angularUtils", "eventbus"], function(angularUtils, eventbus) {
 
   return angularUtils.defineController({
     name: "TagCtrl",
-    constructor: constructor,
+    controller: controller,
     dependencies: ["$scope"]
   });
 });

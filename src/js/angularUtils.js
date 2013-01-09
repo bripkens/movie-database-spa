@@ -1,4 +1,4 @@
-define(["app", "utils"], function(app, utils) {
+define(["app", "utils", "config"], function(app, utils, configModule) {
   "use strict";
 
   var exports = {};
@@ -9,21 +9,27 @@ define(["app", "utils"], function(app, utils) {
     utils.assert(config.dependencies,
       "Controller % defines no dependencies!",
       config.name);
-    utils.assertFunction(config.constructor,
+    utils.assertFunction(config.controller,
       "Controller % defines no controller function. Got: %",
-      config.name, config.constructor);
+      config.name, config.controller);
 
-    var constructor = config.constructor;
-    app.controller(config.name, constructor);
+    var controller = config.controller;
+    app.controller(config.name, controller);
+
+    controller.controllerName = config.name;
 
     if (config.partial) {
-      constructor.partial = config.partial;
+      controller.partial = configModule.templatePath.partials + config.partial;
     } else {
-      constructor.needsPartial = false;
+      controller.needsPartial = false;
     }
 
-    constructor.$inject = config.dependencies;
-    return constructor;
+    if (config.resolve) {
+      controller.resolve = config.resolve;
+    }
+
+    controller.$inject = config.dependencies;
+    return controller;
   };
 
   return exports;

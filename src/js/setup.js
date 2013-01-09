@@ -13,7 +13,7 @@ define(["app", "lodash", "routes"], function(app, _, routes) {
         // the controller is actually a redirect instruction
         routeConfiguration.redirectTo = ctrl;
       } else {
-        routeConfiguration.templateUrl = "/partials/" + ctrl.partial;
+        routeConfiguration.templateUrl = ctrl.partial;
         routeConfiguration.controller = ctrl;
 
         if (ctrl.resolve) {

@@ -1,4 +1,4 @@
-/*global it:false,runs:false,waitsFor:false*/
+/*global it:false,runs:false,waitsFor:false,beforeEach:false*/
 
 
 this.rIt = function rIt(name, dependencies, test) {
@@ -20,3 +20,18 @@ this.rIt = function rIt(name, dependencies, test) {
     });
   });
 };
+
+beforeEach(function() {
+  "use strict";
+  this.addMatchers({
+    to: function(delegate) {
+      var result = delegate(this.actual);
+
+      this.message = function() {
+        return result.message || "Expect " + this.actual + " to be ?";
+      };
+
+      return result.ok;
+    }
+  });
+});

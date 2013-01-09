@@ -1,4 +1,4 @@
-<h2>Edit Movie {{title}}</h2>
+<h2>Edit Movie {{movie.title}}</h2>
 
 <form class="form-horizontal">
   <div class="control-group">
@@ -7,7 +7,7 @@
       <input type="text"
              id="inputTitle"
              class="input-block-level"
-             ng-model="title">
+             ng-model="movie.title">
     </div>
   </div>
   <div class="control-group">
@@ -16,7 +16,7 @@
       <input type="date"
              id="inputReleaseDate"
              class="input-block-level"
-             ng-model="releaseDate">
+             ng-model="movie.startDate">
     </div>
   </div>
   <div class="control-group">
@@ -25,7 +25,7 @@
       <textarea rows="5"
                 id="inputDescription"
                 class="input-block-level"
-                ng-model="description">
+                ng-model="movie.description">
       </textarea>
     </div>
   </div>
@@ -35,6 +35,6 @@
             ng-click="save()">
       Save
     </button>
-    <a href="/movies/{{id}}" class="btn">Cancel</a>
+    <a href="/movies/{{movie.id}}" class="btn">Cancel</a>
   </div>
 </form>

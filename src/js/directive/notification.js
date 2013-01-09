@@ -1,5 +1,4 @@
-/*global console:false */
-define(["app", "angular", "utils"], function(app, angular, utils) {
+define(["app", "config"], function(app, config) {
   "use strict";
 
   return app.directive("notification", function() {
@@ -10,16 +9,10 @@ define(["app", "angular", "utils"], function(app, angular, utils) {
       scope: {
         title: "=",
         type: "=",
-        show: "="
+        onHide: "&",
+        visible: "="
       },
-      templateUrl: "/partials/directives/notification.html",
-      link: function(scope, element, attrs) {
-        var button = angular.element(element.children()[0]);
-
-        button.bind("click", function() {
-          element.remove();
-        });
-      }
+      templateUrl: config.templatePath.directives + "notification.html"
     };
 
   });

@@ -1,4 +1,38 @@
 define({
+
+  /*
+   * Page title format string. The format string will be passed through
+   * utils.format() and can therefore contain one '%' (percent) character
+   * which represent the current route's page title extension.
+   */
+  pageTitle: "% - Movie Database",
+
+  /*
+   * This fallback will be used when the current route does not define a
+   * page title.
+   */
+  pageTitleFallback: "Movie Database",
+
+  /*
+   * The maximum time a notification is visible in milliseconds
+   */
+  notificationVisibilityTime: 5000,
+
+  templatePath: {
+    /*
+     * Path to the HTML templates that are used by controllers.
+     * angularUtils.defineController() is making use of this configuration
+     * option for controller definition.
+     */
+    partials: "/templates/partials/",
+
+    /*
+     * Path to directives' templates. These templates are generally
+     * referenced in a directive config's templateUrl property.
+     */
+    directives: "/templates/directives/"
+  },
+
   /*
    * Set this option to true for additional checks of parameters and other
    * values. This comes in handy during development and for test and staging

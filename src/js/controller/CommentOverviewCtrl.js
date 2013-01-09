@@ -1,7 +1,7 @@
 define(["angularUtils"], function(angularUtils) {
   "use strict";
 
-  function constructor($scope, movieResponse, MovieService) {
+  function controller($scope, movieResponse, MovieService) {
     $scope.predicate = "creationDate";
     $scope.reverse = true;
     $scope.newCommmentContent = "";
@@ -15,20 +15,22 @@ define(["angularUtils"], function(angularUtils) {
         $scope.movie = data;
       });
     };
+
+    $scope.pageTitle = "Comments - " + $scope.movie.title;
   }
 
-  constructor.title = "fooobar";
-  constructor.resolve = {};
-  constructor.resolve.movieResponse = function($route, MovieService) {
+  var resolve = {};
+  resolve.movieResponse = function($route, MovieService) {
     var movieId = $route.current.params.movieId;
     return MovieService.get(movieId);
   };
-  constructor.resolve.movieResponse.$inject = ["$route", "MovieService"];
+  resolve.movieResponse.$inject = ["$route", "MovieService"];
 
   return angularUtils.defineController({
     name: "CommentOverviewCtrl",
-    constructor: constructor,
+    controller: controller,
     partial: "comments/overview.html",
+    resolve: resolve,
     dependencies: ["$scope", "movieResponse", "MovieService"]
   });
 });

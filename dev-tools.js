@@ -84,7 +84,7 @@ module.exports.combineTemplates = function(log, doneCallback) {
     });
   };
 
-  findit.find("src/partials").on("file", function(filename) {
+  findit.find("src/templates").on("file", function(filename) {
     templates.push(filename);
   }).on("end", function() {
     templates.forEach(function(filename) {
