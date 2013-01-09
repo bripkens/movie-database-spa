@@ -17,6 +17,7 @@ define(["app", "utils", "config"], function(app, utils, configModule) {
     app.controller(config.name, controller);
 
     controller.controllerName = config.name;
+    controller.$inject = config.dependencies;
 
     if (config.partial) {
       controller.partial = configModule.templatePath.partials + config.partial;
@@ -28,7 +29,6 @@ define(["app", "utils", "config"], function(app, utils, configModule) {
       controller.resolve = config.resolve;
     }
 
-    controller.$inject = config.dependencies;
     return controller;
   };
 

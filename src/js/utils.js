@@ -7,14 +7,32 @@ define(["config"], function(config) {
   var replaceEscapeCharacterRegex = /\\%/g;
 
   exports.format = function(message) {
-    var result = message;
-    for (var i = 1; i < arguments.length; i++) {
-      // result = result.replace(formatStringRegex, function($0, $1, $2) {
-      //   return $2 ? $2 : arguments[i];
-      // });
-      result = result.replace("%", arguments[i]);
+    var result = "";
+
+    var argIndex = 1;
+    var escape = false;
+    for (var i = 0; i < message.length; i++) {
+      var c = message.charAt(i);
+      if (c === "\\") {
+        escape = true;
+      } else if (c === "%") {
+        if (escape) {
+          result += "%";
+        } else if (argIndex < arguments.length) {
+          result += arguments[argIndex];
+          argIndex += 1;
+        }
+        escape = false;
+      } else {
+        if (escape) {
+          result += "\\";
+        }
+        result += c;
+        escape = false;
+      }
     }
-    return result.replace(replaceEscapeCharacterRegex, "%");
+
+    return result;
   };
 
   exports.assert = function(bool, message) {
