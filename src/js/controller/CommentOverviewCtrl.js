@@ -1,4 +1,5 @@
-define(["angularUtils"], function(angularUtils) {
+define(["angularUtils", "events", "eventbus"],
+    function(angularUtils, events, eventbus) {
   "use strict";
 
   function controller($scope, movieResponse, MovieService) {
@@ -11,8 +12,14 @@ define(["angularUtils"], function(angularUtils) {
       MovieService.addComment($scope.movie.id,
           $scope.newCommmentContent,
           function(error, data) {
-        $scope.newCommmentContent = "";
-        $scope.movie = data;
+        if (!error) {
+          $scope.newCommmentContent = "";
+          $scope.movie = data;
+          eventbus.fire(events.showNotification, [{
+            type: "success",
+            title: "Comment successfully added."
+          }]);
+        }
       });
     };
 

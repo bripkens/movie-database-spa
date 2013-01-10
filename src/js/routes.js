@@ -1,25 +1,31 @@
 define(["controller/404Ctrl",
+        "controller/ErrorCtrl.js",
         "controller/MovieDetailCtrl",
         "controller/MovieOverviewCtrl",
         "controller/MovieEditCtrl",
+        "controller/MovieAddCtrl",
         "controller/CommentOverviewCtrl"],
         function(
           _404Ctrl,
+          ErrorCtrl,
           MovieDetailCtrl,
           MovieOverviewCtrl,
           MovieEditCtrl,
+          MovieAddCtrl,
           CommentOverviewCtrl) {
   "use strict";
 
   return {
     paths: {
       "/": "/movies",
-      "/404": _404Ctrl,
+      "/error": ErrorCtrl,
+      "/notfound": _404Ctrl,
       "/movies": MovieOverviewCtrl,
+      "/movies/new": MovieAddCtrl,
       "/movies/:movieId": MovieDetailCtrl,
       "/movies/:movieId/edit": MovieEditCtrl,
       "/movies/:movieId/comments": CommentOverviewCtrl
-    }, otherwise: "/404"
+    }, otherwise: "/notfound"
   };
 
 });

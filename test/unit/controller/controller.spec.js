@@ -41,8 +41,8 @@ describe("Controller: ", function () {
         });
 
         // validate each parameter's name
-        config.unitTestModus = true;
-        if (utils.isSourceMinified()) {
+        config.unitTestMode = true;
+        if (utils._isSourceMinified()) {
           // it makes no sense to test a function's toString()
           // against minified code.
           return;

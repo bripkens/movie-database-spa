@@ -2,7 +2,8 @@
 
 <dl class="dl-horizontal">
   <dt>Release date</dt>
-  <dd>{{movie.startDate | strDateFormat}}</dd>
+  <dd ng-show="movie.startDate">{{movie.startDate | strDateFormat}}</dd>
+  <dd ng-hide="movie.startDate">Unknown</dd>
   <dt>Description</dt>
   <dd>{{movie.description}}</dd>
 </dl>

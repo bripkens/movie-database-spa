@@ -4,6 +4,7 @@ define(["angularUtils", "events", "eventbus"],
 
   function controller($scope, $location, MovieService, movieResponse) {
     $scope.movie = movieResponse.data;
+    $scope.pageTitle = "Edit - " + $scope.movie.title;
 
     if ($scope.movie.startDate) {
       // HTML 5 date input field expects data in the form of "yyyy-MM-dd"

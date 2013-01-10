@@ -3,9 +3,6 @@ define(["config"], function(config) {
 
   var exports = {};
 
-  var formatStringRegex = /((\\)?%)/g;
-  var replaceEscapeCharacterRegex = /\\%/g;
-
   exports.format = function(message) {
     var result = "";
 
@@ -58,7 +55,7 @@ define(["config"], function(config) {
     var outerArgs = arguments;
 
     return function() {
-      if (config.unitTestModus === true) {
+      if (config.unitTestMode === true) {
         return fn.apply(this, arguments);
       } else {
         exports.assert(false, "This function can only be called in " +
@@ -67,7 +64,7 @@ define(["config"], function(config) {
     };
   };
 
-  exports.isSourceMinified = exports.onlyAllowInUnitTest(function() {
+  exports._isSourceMinified = exports.onlyAllowInUnitTest(function() {
     var miniTest = function(longParameterName) {
       return longParameterName;
     };

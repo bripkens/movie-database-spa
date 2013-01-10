@@ -2,9 +2,10 @@ define(["angularUtils", "config", "utils", "eventbus", "events", "lodash"],
     function(angularUtils, config, utils, eventbus, events, _) {
   "use strict";
 
-  function controller($scope, $log, $timeout) {
+  function controller($scope, $log, $timeout, $location) {
     $scope.notification = null;
     $scope.pageTitle = config.pageTitleFallback;
+    $scope.loading = true;
 
     $scope.onHide = function() {
       $scope.notification.visible = false;
@@ -30,6 +31,8 @@ define(["angularUtils", "config", "utils", "eventbus", "events", "lodash"],
     });
 
     $scope.$on("$routeChangeSuccess", function(e, current, previous) {
+      $scope.loading = false;
+
       /*
        * Unfortunately the $routeChangeSuccess function is called before
        * the controller is initialised. As a result we need delay the access
@@ -49,18 +52,15 @@ define(["angularUtils", "config", "utils", "eventbus", "events", "lodash"],
 
         $scope.pageTitle = pageTitle;
       });
-
-      // TODO update page title, hide loading animation
     });
 
     $scope.$on("$routeChangeError", function(e, current, prev, rejection) {
-      $log.info("routeChangeError", arguments);
-      // hide loading animation and redirect to an error page
+      $scope.loading = false;
+      $location.path("/error");
     });
 
     $scope.$on("$routeChangeStart", function(e, next, current) {
-      $log.info("routeChangeStart", arguments);
-      // TODO show loading animation
+      $scope.loading = true;
     });
   }
 
@@ -68,6 +68,6 @@ define(["angularUtils", "config", "utils", "eventbus", "events", "lodash"],
     name: "ApplicationCtrl",
     controller: controller,
     needsPartial: false,
-    dependencies: ["$scope", "$log", "$timeout"]
+    dependencies: ["$scope", "$log", "$timeout", "$location"]
   });
 });

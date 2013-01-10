@@ -1,6 +1,6 @@
 define(["controller/404Ctrl",
         "controller/ApplicationCtrl",
-        "controller/TagCtrl",
+        "controller/SidebarCtrl",
         "controller/MovieDetailCtrl",
         "controller/MovieOverviewCtrl",
         "controller/MovieEditCtrl"], function(){

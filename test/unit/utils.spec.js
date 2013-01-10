@@ -80,7 +80,7 @@ describe("utils", function() {
         ["config", "utils"],
         function(config, utils) {
       functionCalled = false;
-      config.unitTestModus = false;
+      config.unitTestMode = false;
       var wrappedFn = utils.onlyAllowInUnitTest(testFn);
 
       try {
@@ -96,7 +96,7 @@ describe("utils", function() {
         ["config", "utils"],
         function(config, utils) {
       functionCalled = false;
-      config.unitTestModus = true;
+      config.unitTestMode = true;
       var wrappedFn = utils.onlyAllowInUnitTest(testFn);
       wrappedFn();
       expect(functionCalled).toBe(true);

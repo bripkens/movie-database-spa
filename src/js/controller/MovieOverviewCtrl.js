@@ -3,6 +3,7 @@ define(["angularUtils"], function(angularUtils) {
 
   function controller($scope, $location, movieResponse) {
     $scope.movies = movieResponse.data;
+    $scope.predicate = "title";
 
     $scope.click = function(movieId) {
       $location.path("/movies/" + movieId);

@@ -2,6 +2,20 @@ body {
   margin-top: 50px;
 }
 
+.loading-indicator {
+  padding: 3px 10px;
+
+  // navbar has z-index 1030
+  z-index: 1040;
+  position: fixed;
+  top: -1px;
+  left: 50%;
+
+  display: inline-block;
+
+  background: rgb(240, 240, 100);
+}
+
 .legend {
   display: block;
   width: 100%;

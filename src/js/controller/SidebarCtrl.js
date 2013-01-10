@@ -11,7 +11,7 @@ define(["angularUtils", "eventbus"], function(angularUtils, eventbus) {
   }
 
   return angularUtils.defineController({
-    name: "TagCtrl",
+    name: "SidebarCtrl",
     controller: controller,
     dependencies: ["$scope"]
   });

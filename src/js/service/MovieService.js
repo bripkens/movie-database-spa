@@ -42,6 +42,19 @@ define(["app", "config"], function(app, config) {
       });
     });
 
+    exports.add = callbackSupport(function(movie) {
+      console.log('movie: ', JSON.stringify(movie));
+      return $http({
+        method: "POST",
+        url: config.endpoint + "/movies/new",
+        headers: {
+          Accept: "application/json, application/hal+json",
+          "Content-Type": "application/json"
+        },
+        data: JSON.stringify(movie)
+      });
+    });
+
     exports.update = callbackSupport(function(movie) {
       return $http({
         method: "PUT",

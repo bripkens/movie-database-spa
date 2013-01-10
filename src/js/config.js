@@ -59,5 +59,5 @@ define({
    * Depending on your problem, you may find it useful to set this to true
    * for debugging purposes.
    */
-  unitTestModus: false
+  unitTestMode: false
 });

@@ -6,14 +6,14 @@ require(["app", "moment"], function(app, moment) {
   app.filter("strDateFormat", function() {
     return function(str, format) {
       var date = moment(str, serviceDateFormat);
-      return date.format(format || "LL");
+      return date ? date.format(format || "LL") : "";
     };
   });
 
   app.filter("strDateTimeFormat", function() {
     return function(str) {
       var date = moment(str);
-      return date.format("LLL");
+      return date ? date.format("LLL") : "";
     };
   });
 });

@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="movie in movies"
+    <tr ng-repeat="movie in movies | orderBy:predicate"
         ng-click="click(movie.id)">
       <td>
         <a href="/movies/{{movie.id}}">{{movie.title}}</a>
