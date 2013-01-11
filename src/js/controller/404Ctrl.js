@@ -1,4 +1,3 @@
-/*global console:false */
 define(["angularUtils"], function(angularUtils) {
   "use strict";
 

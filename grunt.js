@@ -141,25 +141,29 @@ module.exports = function (grunt) {
         singleRun: false,
         autoWatch: true
       }
-    }
+    },
+    clean: ["target/"]
   });
 
   grunt.loadNpmTasks("grunt-contrib-less");
   grunt.loadNpmTasks("grunt-contrib-copy");
   grunt.loadNpmTasks("grunt-contrib-requirejs");
+  grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-testacular");
 
-  var devTools = require("./dev-tools");
+  var server = require("./build/server");
   grunt.registerTask("server", "Custom development server", function() {
-    devTools.startServer();
+    server();
   });
 
+  var reload = require("./build/reload");
   grunt.registerTask("reload", "reload Chrome on OS X", function() {
-    devTools.reloadChrome();
+    reload();
   });
 
+  var combineTemplates = require("./build/combineTemplates");
   grunt.registerTask("combineTemplates", "Combine the partials", function() {
-    devTools.combineTemplates(grunt.log.writeln.bind(grunt.log), this.async());
+    combineTemplates(grunt.log.writeln.bind(grunt.log), this.async());
   });
 
   grunt.registerTask("compile:production",

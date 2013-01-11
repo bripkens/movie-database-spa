@@ -33,6 +33,7 @@
     "grunt-contrib-less": "0.3.1",
     "grunt-testacular": "0.2.2",
     "grunt-contrib-copy": "0.3.2",
+    "grunt-contrib-clean": "0.3.1",
     "node-static": "0.6.6",
     "requirejs": "2.1.2",
     "grunt-contrib-requirejs": "0.3.4",
