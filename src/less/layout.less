@@ -14,6 +14,20 @@ body {
   display: inline-block;
 
   background: rgb(240, 240, 100);
+
+  opacity: 0;
+
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  transition-delay: 0;
+
+  &.visible {
+    opacity: 1;
+
+    -webkit-transition: opacity 0.5s ease 0.5s;
+    -moz-transition: opacity 0.5s ease 0.5s;
+    transition: opacity 0.5s ease 0.5s;
+  }
 }
 
 .legend {

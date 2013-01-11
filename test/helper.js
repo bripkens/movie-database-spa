@@ -1,6 +1,4 @@
 /*global it:false,runs:false,waitsFor:false,beforeEach:false*/
-
-
 this.rIt = function rIt(name, dependencies, test) {
   "use strict";
 

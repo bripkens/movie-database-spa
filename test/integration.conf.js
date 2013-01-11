@@ -10,7 +10,9 @@
  reporters:true,
  preprocessors:true,
  coverageReporter:true,
- proxies:true
+ proxies:true,
+ port:true,
+ urlRoot:true
 */
 
 basePath = "../";
@@ -18,15 +20,17 @@ basePath = "../";
 files = [
   ANGULAR_SCENARIO,
   ANGULAR_SCENARIO_ADAPTER,
-  "test/integration/**/*.js"
+  "test/integration/**/*"
 ];
 
+urlRoot = '/__testacular/';
+
+port = 8181;
+
 browsers = ["Chrome"];
-autoWatch = false;
-singleRun = true;
+autoWatch = true;
+singleRun = false;
 
 proxies = {
   "/": "http://localhost:8000/"
 };
-
-reporters = ['progress'];
