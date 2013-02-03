@@ -142,7 +142,17 @@ module.exports = function (grunt) {
         autoWatch: true
       }
     },
-    clean: ["target/"]
+    clean: ["target/"],
+    buildAll: {
+      angular: {
+        reject: "all.js",
+        remove: "src/js/",
+        "src/js/controller/all.js": "src/js/controller",
+        "src/js/directive/all.js": "src/js/directive",
+        "src/js/filter/all.js": "src/js/filter",
+        "src/js/service/all.js": "src/js/service"
+      }
+    }
   });
 
   grunt.loadNpmTasks("grunt-contrib-less");
@@ -150,6 +160,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-requirejs");
   grunt.loadNpmTasks("grunt-contrib-clean");
   grunt.loadNpmTasks("grunt-testacular");
+
+  require("./build/build-all.js")(grunt);
 
   var server = require("./build/server");
   grunt.registerTask("server", "Custom development server", function() {
@@ -167,9 +179,9 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask("compile:production",
-    "less:production copy requirejs min combineTemplates");
+    "less:production copy buildAll requirejs min combineTemplates");
   grunt.registerTask("compile:development",
-    "less:development copy requirejs concat combineTemplates");
+    "less:development copy buildAll requirejs concat combineTemplates");
 
   grunt.registerTask("default", "lint compile:production");
   grunt.registerTask("run", "compile:development server watch");

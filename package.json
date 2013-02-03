@@ -37,6 +37,8 @@
     "node-static": "0.6.6",
     "requirejs": "2.1.2",
     "grunt-contrib-requirejs": "0.3.4",
-    "findit": "~0.1.2"
+    "findit": "0.1.2",
+    "q": "0.8.12",
+    "lodash": "~1.0.0-rc.3"
   }
 }

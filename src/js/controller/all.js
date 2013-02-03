@@ -1,9 +1,13 @@
-define(["controller/404Ctrl",
-        "controller/ApplicationCtrl",
-        "controller/SidebarCtrl",
-        "controller/MovieDetailCtrl",
-        "controller/MovieOverviewCtrl",
-        "controller/MovieEditCtrl"], function(){
+define([
+    "controller/404Ctrl",
+    "controller/ApplicationCtrl",
+    "controller/CommentOverviewCtrl",
+    "controller/ErrorCtrl",
+    "controller/MovieAddCtrl",
+    "controller/MovieDetailCtrl",
+    "controller/MovieEditCtrl",
+    "controller/MovieOverviewCtrl",
+    "controller/SidebarCtrl"], function() {
   "use strict";
   return Array.prototype.slice.call(arguments, 0);
 });

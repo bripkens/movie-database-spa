@@ -1,5 +1,5 @@
 define(["controller/404Ctrl",
-        "controller/ErrorCtrl.js",
+        "controller/ErrorCtrl",
         "controller/MovieDetailCtrl",
         "controller/MovieOverviewCtrl",
         "controller/MovieEditCtrl",
