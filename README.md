@@ -9,15 +9,14 @@ This project shows how the movie-database web frontend could be developed as a S
 * grunt
 
 ## Configuration
-Adjust the endpoint in the file src/js/config.js to your installed [movie-database] (https://github.com/tobiasflohre/movie-database):
-    endpoint: "http://localhost:8080/moviedatabase"
+Adjust the endpoint in the file src/js/config.js to your installed [movie-database] (https://github.com/tobiasflohre/movie-database).
     
 ## Build and Run
 install missing modules:
-    npm install
+    ```npm install```
 
 run application:
-    grunt run
+    ```grunt run```
 
 Access the application in your browser:
-    [http://localhost:8000](http://localhost:8000)
+    ```[http://localhost:8000](http://localhost:8000)```
