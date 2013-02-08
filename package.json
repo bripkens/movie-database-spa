@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "SPA example",
   "main": "js/app.js",
+  "engines": {
+    "node": "0.9.x",
+    "npm": "1.1.x"
+  },
   "scripts": {
     "test": "grunt"
   },
