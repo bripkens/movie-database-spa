@@ -2,7 +2,7 @@
 var nodeStatic = require("node-static");
 var http = require("http");
 var webroot = "./target";
-var port = 8000;
+var port = process.env.PORT || 8000;
 
 module.exports = function() {
   "use strict";

@@ -189,4 +189,5 @@ module.exports = function (grunt) {
   grunt.registerTask("test", "testacularServer:dev");
   grunt.registerTask("itest", "testacularServer:integration");
   grunt.registerTask("travis", "lint compile:production testacularServer:unit");
+  grunt.registerTask("heroku", "compile:production server watch");
 };
