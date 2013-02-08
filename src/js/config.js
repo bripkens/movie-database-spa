@@ -47,7 +47,7 @@ define({
    * The web service endpoint which you want to use. Generally, service
    * modules are going to rely on this option.
    */
-  endpoint: "http://localhost:8080/moviedatabase",
+  endpoint: "http://localhost:8080",
 
   /*
    * Through this configuration optional additional functions will become

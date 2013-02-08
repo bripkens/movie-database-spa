@@ -118,6 +118,8 @@ module.exports = function(grunt) {
           return file.substr(0, file.length - 3);
         });
 
+        allFiles.sort();
+
         // write the newly generated file
         var fileContents = toRequireJsAllFile(allFiles);
         return Q.nfcall(fs.writeFile, output,
