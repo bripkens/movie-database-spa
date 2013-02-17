@@ -16,7 +16,7 @@
     Loading...
   </div>
 
-  <div class="navbar navbar-inverse navbar-fixed-top">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
         <a class="brand" href="/">Movie Database</a>
@@ -33,22 +33,22 @@
         </form>
       </div>
     </div>
-  </div>
+  </nav>
 
   <div class="container">
     <div class="row">
 
-      <div class="span3 well well-small sidebar" ng-controller="SidebarCtrl">
+      <aside class="span3 well well-small sidebar" ng-controller="SidebarCtrl">
         <h2>Tag Cloud</h2>
         <ul>
           <li ng-repeat="tag in tags">
-            <a href="#" title="Check out the movies tagged with A"
+            <a href="#" title="Browse movies that are tagged {{tag}}"
                 ng-click="clickTag(tag)">
               {{tag}}
             </a>
           </li>
         </ul>
-      </div>
+      </aside>
 
       <div class="span9">
         <notification title="notification.title"
@@ -57,7 +57,7 @@
                       on-hide="onHide()">
           {{notification.message}}
         </notification>
-        <div ng-view></div>
+        <div role="main" ng-view></div>
       </div>
 
     </div>

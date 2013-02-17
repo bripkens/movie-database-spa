@@ -11,16 +11,19 @@
     <tr ng-repeat="movie in movies | orderBy:predicate"
         ng-click="click(movie.id)">
       <td>
-        <a href="/movies/{{movie.id}}">{{movie.title}}</a>
+        <a href="/movies/{{movie.id}}"
+           title="Get more information for the movie {{movie.title}}">
+          {{movie.title}}
+        </a>
       </td>
       <td>
         <a href="/movies/{{movie.id}}/comments"
-           title="See comments for this movie" class="icon-comment">
+           title="See comments for the movie {{movie.title}}" class="icon-comment">
          </a>
       </td>
       <td>
         <a href="/movies/{{movie.id}}/tags"
-           title="See tags for this movie" class="icon-tags">
+           title="See tags for the movie {{movie.title}}" class="icon-tags">
          </a>
       </td>
     </tr>
