@@ -46,6 +46,9 @@ define({
   /*
    * The web service endpoint which you want to use. Generally, service
    * modules are going to rely on this option.
+   *
+   * You can use the following movie-database deployment for demo purposes:
+   * http://movie-database.herokuapp.com
    */
   endpoint: "http://movie-database.herokuapp.com",
 

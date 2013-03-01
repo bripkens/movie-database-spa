@@ -13,10 +13,15 @@ define(["angularUtils"], function(angularUtils) {
   }
 
   var resolve = {};
-  resolve.movieResponse = function(MovieService) {
-    return MovieService.all();
+  resolve.movieResponse = function($location, MovieService) {
+    var query = $location.search().searchString;
+    if (query == null) {
+      return MovieService.all();
+    }
+
+    return MovieService.query(query);
   };
-  resolve.movieResponse.$inject = ["MovieService"];
+  resolve.movieResponse.$inject = ["$location", "MovieService"];
 
   return angularUtils.defineController({
     name: "MovieOverviewCtrl",

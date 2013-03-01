@@ -32,6 +32,18 @@ define(["app", "config"], function(app, config) {
       });
     });
 
+    exports.query = callbackSupport(function(query) {
+
+      var path = "/movies?searchString=" + encodeURIComponent(query);
+      return $http({
+        method: "GET",
+        url: config.endpoint + path,
+        headers: {
+          Accept: "application/json, application/hal+json"
+        }
+      });
+    });
+
     exports.get = callbackSupport(function(id) {
       return $http({
         method: "GET",
