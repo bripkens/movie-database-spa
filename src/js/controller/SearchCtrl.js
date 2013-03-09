@@ -6,6 +6,7 @@ define(["angularUtils", "eventbus"], function(angularUtils, eventbus) {
     $scope.query = $location.search().searchString;
 
     $scope.search = function() {
+      $location.path("/");
       $location.search("searchString", $scope.query);
     };
   }
