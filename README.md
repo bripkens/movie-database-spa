@@ -2,6 +2,7 @@
 
 This project shows how the movie-database web frontend could be developed as a Single-Page Application. The application has been deployed to Heroku. [Give it a try!](http://movie-database-spa.herokuapp.com/movies)
 
+
 *Please note: Heroku is shutting down the app from time to time to save resources. Initial loading times may therefore be slow.*
 
 ## System Requirements
