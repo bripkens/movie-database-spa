@@ -2,13 +2,14 @@
 
 This project shows how the movie-database web frontend could be developed as a Single-Page Application. The application has been deployed to Heroku. [Give it a try!](http://movie-database-spa.herokuapp.com/movies)
 
+
 *Please note: Heroku is shutting down the app from time to time to save resources. Initial loading times may therefore be slow.*
 
 ## System Requirements
 
 You need to have the following applications installed in order to *build* and *run* this application.
 
-* node.js
+* node.js (Tested with 0.8.x. Version 0.10.x is known to be break the server task)
 * npm (should be installed automatically with node.js)
 * [grunt](https://github.com/gruntjs/grunt)
 * a running version of the [ROCA version of this application](https://github.com/tobiasflohre/movie-database) (see the following section for more information)

@@ -7,6 +7,7 @@ define([
     "controller/MovieDetailCtrl",
     "controller/MovieEditCtrl",
     "controller/MovieOverviewCtrl",
+    "controller/NotImplementedCtrl",
     "controller/SearchCtrl",
     "controller/SidebarCtrl"], function() {
   "use strict";
