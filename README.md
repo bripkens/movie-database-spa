@@ -9,7 +9,7 @@ This project shows how the movie-database web frontend could be developed as a S
 
 You need to have the following applications installed in order to *build* and *run* this application.
 
-* node.js
+* node.js (Tested with 0.8.x. Version 0.10.x is known to be break the server task)
 * npm (should be installed automatically with node.js)
 * [grunt](https://github.com/gruntjs/grunt)
 * a running version of the [ROCA version of this application](https://github.com/tobiasflohre/movie-database) (see the following section for more information)
