@@ -7,6 +7,7 @@ define([
     "controller/MovieDetailCtrl",
     "controller/MovieEditCtrl",
     "controller/MovieOverviewCtrl",
+    "controller/NotImplementedCtrl",
     "controller/SidebarCtrl"], function() {
   "use strict";
   return Array.prototype.slice.call(arguments, 0);

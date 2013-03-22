@@ -4,7 +4,8 @@ define(["controller/404Ctrl",
         "controller/MovieOverviewCtrl",
         "controller/MovieEditCtrl",
         "controller/MovieAddCtrl",
-        "controller/CommentOverviewCtrl"],
+        "controller/CommentOverviewCtrl",
+        "controller/NotImplementedCtrl"],
         function(
           _404Ctrl,
           ErrorCtrl,
@@ -12,7 +13,8 @@ define(["controller/404Ctrl",
           MovieOverviewCtrl,
           MovieEditCtrl,
           MovieAddCtrl,
-          CommentOverviewCtrl) {
+          CommentOverviewCtrl,
+          NotImplementedCtrl) {
   "use strict";
 
   return {
@@ -20,6 +22,7 @@ define(["controller/404Ctrl",
       "/": "/movies",
       "/error": ErrorCtrl,
       "/notfound": _404Ctrl,
+      "/notimplemented": NotImplementedCtrl,
       "/movies": MovieOverviewCtrl,
       "/movies/new": MovieAddCtrl,
       "/movies/:movieId": MovieDetailCtrl,
